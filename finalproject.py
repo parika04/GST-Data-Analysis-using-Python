@@ -4,7 +4,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
-import statsmodels.api as sm
 
 # Load the data
 data = pd.read_excel('finaldata.xlsx')
