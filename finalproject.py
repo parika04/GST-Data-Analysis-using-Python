@@ -109,27 +109,3 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 print("\nSummary (Before vs After Due Date Registrations): Before-due-date registrations significantly outnumber after-due-date registrations, indicating timely compliance among most GST payers.")
-
-#Objective 6-------------------------------------------------------------
-gstr1 = data[data['GST ( Goods and Service Tax ) Return Type'] == 'GSTR-1']['Payer eligible for GST ( Goods and Service Tax ) registration']
-gstr3 = data[data['GST ( Goods and Service Tax ) Return Type'] == 'GSTR-3']['Payer eligible for GST ( Goods and Service Tax ) registration']
-t_stat, p_value = stats.ttest_ind(gstr1, gstr3, equal_var=False)
-print("\nT-Test: Eligible Payers GSTR-1 vs GSTR-3")
-print(f"T-Statistic: {t_stat:.3f}, p-value: {p_value:.3f}")
-if p_value < 0.05:
-    print("Significant difference between GSTR-1 and GSTR-3 (p < 0.05)")
-else:
-    print("No significant difference between GSTR-1 and GSTR-3 (p >= 0.05)")
-print("\nSummary (T-Test GSTR-1 vs GSTR-3): The significant difference (p=0.000) shows that GSTR-3 has more eligible payers than GSTR-1, highlighting distinct eligibility patterns by return type.")
-
-# ANOVA: Eligible payers across states
-state_groups = [group['Payer eligible for GST ( Goods and Service Tax ) registration'].dropna() for name, group in data.groupby('srcStateName')]
-anova_result = stats.f_oneway(*state_groups)
-print("\nANOVA: Eligible Payers Across States")
-print(f"F-Statistic: {anova_result.statistic:.3f}, p-value: {anova_result.pvalue:.3f}")
-if anova_result.pvalue < 0.05:
-    print("Significant difference across states (p < 0.05)")
-else:
-    print("No significant difference across states (p >= 0.05)")
-print("\nSummary (ANOVA Across States): Significant variation in eligible payers across states (p=0.000) confirms diverse regional GST eligibility patterns.")
-print("\nSummary (Objective 5): Visualizations and tests reveal timely registrations dominate and significant differences exist in eligibility by return type and state, pointing to varied GST participation.")
