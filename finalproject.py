@@ -41,6 +41,7 @@ sns.barplot(x=state_eligible.values, y=state_eligible.index, hue=state_eligible.
 plt.title("Top 10 States/UTs by Eligible GST Payers")
 plt.xlabel("Number of Eligible Payers")
 plt.ylabel("State/UT")
+plt.tight_layout()
 plt.show()
 print("\nSummary: The top states/UTs, like Maharashtra and Uttar Pradesh, have the highest number of eligible GST payers, showing strong regional variation. Jammu and Kashmir's data indicates moderate eligibility compared to larger states.")
 
